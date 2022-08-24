@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+#MVCC TRUE 설정시 여러 개가 한번에 접근했을 때 좀 더 빨리 처리됨
+  jpa:
+    hibernate:
+      ddl-auto: create
+      properties:
+        hibernate:
+#          show_sql: true
+          format_sql: true
+#ddl-auto create 설정시 자동으로 테이블을 생성해줌
+#이런 설정들은 spring.io에 들어가서 reference guide 등을 보면서 공부하면 됨
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type: trace
+#jpa나 hibernate가 생성한 모든 sql을 debug로 보여줌..show_sql과 비슷하지만 show_sql은 system.out로 debug는 log로 보여주는 거라 show는 쓰는 게 좋음
+#type trace로 설정하면 sql 실행 파라미터를 로그로 남김

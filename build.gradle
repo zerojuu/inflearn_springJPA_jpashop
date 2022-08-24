@@ -1,0 +1,47 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'jpabook'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+	testImplementation 'junit:junit:4.13.1'
+//devtools 사용시 변경 내용을 빠르게 확인 가능.. 내용 변경하고 build-recompile(변경한파일이름) 클릭후 크롬 새로고침하면 반영됨
+//'com.github.gavlyukovskiy:p6spy-spring-boot-starter : 외부 라이브러리를 사용하여 쿼리 파라미터를 로그로 남기기
+//스프링이 갖고 있지 않은 내가 추가한 라이브러리는 뒤에 버전 정보가 적혀있어야 함
+
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//JUnit4 추가
+	testImplementation("org.junit.vintage:junit-vintage-engine") {
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+	}
+}
+test {
+	useJUnitPlatform()
+}
+
