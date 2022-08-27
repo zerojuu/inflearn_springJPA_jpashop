@@ -1,20 +1,21 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository  //스프링에서 제공하는 repository 어노테이션 -> 컴포넌트스캔 대상이 되서 자동으로 관리됨
+@RequiredArgsConstructor
 public class MemberRepository {
-    @PersistenceContext  //jpa가 제공하는 표준 어노테이션
-    private EntityManager em;
+    //@PersistenceContext  //jpa가 제공하는 표준 어노테이션 -> @RequiredArgsConstructor를 사용하고 final 선언하면 필요없음
+    private final EntityManager em;  //@RequiredArgsConstructor를 사용하면서 생성자로 인젝션한 것임
 
     //저장
     public void save(Member member) {
-        em.persist(member);
+        em.persist(member);  //저장시 (영속성) member_id를 PK로 보기에 갖고 있음
     }
 
     //단건 조회
