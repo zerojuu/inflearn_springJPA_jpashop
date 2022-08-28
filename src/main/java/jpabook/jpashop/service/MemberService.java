@@ -3,7 +3,6 @@ package jpabook.jpashop.service;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,10 +25,10 @@ public class MemberService {
 
     //생성자 인젝션.. 스프링이 뜰 때 생성자에서 인젝션해줌 그렇기에 중간에 set해서 memberRepository를 변경할 수 없음 또한 테스트케이스 작성시 놀치는 부분이 어딘지 알 수 있음
     //최신 버전의 스프링에서는 생성자가 하나일 경우 Autowired가 없어도 자동으로 인젝션해줌
-    @Autowired
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
+//    @Autowired
+//    public MemberService(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
 
     /**
      *  회원 가입..member 객체를 넘김
