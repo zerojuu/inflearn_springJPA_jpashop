@@ -1,0 +1,28 @@
+#main에 있는 application.yml을 복사함
+#스프링 내부의 메모리디비를 사용하기 위해
+#테스트 폴더에 넣어두면 여기에 우선권이 있고 main의 application.yml은 무시해버림
+#build.gradle에 h2데이터베이스가 있기 때문에 클라이언트모드 뿐만 아니라 메모리모드를 띄울 수 있음 -> jdbc:h2:mem:test
+#아래의 7~20번째 줄을 주석처리한 이유(다 없어도 됨): 스프링부트에서는 설정을 안 하면 자동으로 메모르모드를 띄움 -> jdbc:h2:mem:testdb
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#MVCC TRUE 설정시 여러 개가 한번에 접근했을 때 좀 더 빨리 처리됨
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#      properties:
+#        hibernate:
+##          show_sql: true
+#          format_sql: true
+#ddl-auto create 설정시 자동으로 테이블을 생성해줌
+#이런 설정들은 spring.io에 들어가서 reference guide 등을 보면서 공부하면 됨
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type: trace
+#jpa나 hibernate가 생성한 모든 sql을 debug로 보여줌..show_sql과 비슷하지만 show_sql은 system.out로 debug는 log로 보여주는 거라 show는 쓰는 게 좋음
+#type trace로 설정하면 sql 실행 파라미터를 로그로 남김
