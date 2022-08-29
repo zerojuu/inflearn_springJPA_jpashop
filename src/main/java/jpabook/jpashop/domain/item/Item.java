@@ -25,7 +25,7 @@ public abstract class Item {
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<Category>();
 
     //==비즈니스 로직==//
     //데이터(stockQuantity)를 가지고 있는 쪽(item)에 비즈니스로직을 놓는 게 응집력 좋음
@@ -47,4 +47,5 @@ public abstract class Item {
         }
         this.stockQuantity = restStock;
     }
+
 }
