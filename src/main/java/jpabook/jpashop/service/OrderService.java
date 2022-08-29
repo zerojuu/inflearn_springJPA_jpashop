@@ -26,7 +26,7 @@ public class OrderService {
      *  주문
      */
     @Transactional  //데이터 변경이기에 필요
-    private Long order(Long memberId, Long itemId, int count) {  //식별자값 반환
+    public Long order(Long memberId, Long itemId, int count) {  //식별자값 반환
         //엔티티 조회
         Member member = memberRepository.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
